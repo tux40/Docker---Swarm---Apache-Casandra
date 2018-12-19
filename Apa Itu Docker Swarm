@@ -1,0 +1,19 @@
+Apa Itu Docker Swarm
+Sebelum membahas tentang arsitektur nya, kita akan membahas terlebih dahulu mengenai docker swarm.
+
+Docker Swarm adalah Salah satu product nya docker untuk dapat mendeploy container pada multihost.
+
+Multihost disini adalah di banyak server. Misalnya kita mempunyai 2 server, misalnya server A dan server B. Masing - masing server akan dilakukan instalasi docker, dan masing - masing docker mempunyai 1 container yang sedang berjalan. Bagaimana caranya agar container yang terdapat pada server A dan melakukan komunikasi dengan container yang ada pada server B, sedangkan jaringan yang terdapat pada server berbeda dengan jaringan yang terdapat di dalam masing - masing container. Jawaban nya adalah dengan menggunakan docker swarm, dengan menggunakan docker swarm maka docker yang yang terdapat di dalam beberapa host dapat kita lakukan cluster sehingga seakan - akan docker tersebut terdapat pada 1 host. Dengan menggunakan docker swarm, kita bebas menetukan container tersebut ingin di deploy ke host yang diinginkan.
+
+==
+Pada gambar diatas terdapat
+
+2 server yaitu dengan IP 192.168.50.2 dan 192.168.50.3
+3 container di masing - masing server, di dalam 1 container terdapat 1 node cassandra
+Dari gambar diatas dapat kita lihat bahwa antar server, terdapat jaringan fisik misalnya LAN dan sebagainya, sedangkan di dalam docker container terdapat jaringan tersendiri, sehingga untuk menyambungkan container antar server/host maka digunakan jaringan overlay.
+
+Jaringan Overlay adalah jaringan komputer virtual yang dibangun di atas jaringan lain.
+
+Jaringan overlay ini nantinya akan dibuatkan oleh docker swarm sehingga kita tidak perlu melakukan konfigurasi secara manual, sehingga setiap container yang berbeda host dapat berkomunikasi pada 1 jaringan overlay.
+
+==
